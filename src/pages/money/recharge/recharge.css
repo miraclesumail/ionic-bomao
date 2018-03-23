@@ -1,0 +1,28 @@
+page-recharge .recharge .block {
+  display: block !important; }
+page-recharge .remind {
+  color: #808080;
+  font-size: 1.3rem;
+  padding: 0 4%;
+  margin-top: 8px; }
+page-recharge .recharge-bank {
+  display: block !important; }
+page-recharge .choice-bank {
+  background: #fff;
+  text-align: center;
+  line-height: 46px;
+  font-size: 1.6rem; }
+page-recharge .we-chat {
+  text-align: center;
+  margin: 12px; }
+  page-recharge .we-chat .we-chat-img {
+    background: #fff;
+    border-radius: 4px;
+    padding: 5px 20px; }
+  page-recharge .we-chat .zhifubao {
+    padding: 10px 20px; }
+page-recharge .recharge-tab li {
+  border-right: 1px solid #4A4A4A !important;
+  border-bottom: 1px solid #4A4A4A; }
+
+/*# sourceMappingURL=recharge.css.map */

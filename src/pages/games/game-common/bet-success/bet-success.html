@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>温馨提示</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="white-bg">
+  <div class="bet-success">
+    <div><img src="assets/img/ok.png" alt=""></div>
+    <div class="text-1">恭喜你！</div>
+    <div class="text-2">你的下注已经成功了祝你好运！</div>
+  </div>
+  <ul class="bet-bottom-box clear">
+    <li><button ion-button full (click)="go('BetDetailMorePage',navParams.get('data'))" class="bet-green">订单详情</button></li>
+    <li><button ion-button full (touchstart)="gosscpage()">继续投注</button></li>
+  </ul>
+</ion-content>

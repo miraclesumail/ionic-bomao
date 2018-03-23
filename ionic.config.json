@@ -1,0 +1,14 @@
+{
+  "name": "new-bomao-app",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  },
+  "proxies": [
+    {
+      "path": "/",
+      "proxyUrl": "http://localhost:8181"
+    }
+  ]
+}

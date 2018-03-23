@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <button icon-only class="fr">
+      <mores></mores>
+    </button>
+    <ion-title>投注详情</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="gray-bg">
+  <div style="height: 1px;" [class.sscbg]="share?.timers?.divTimer?.show" ></div>
+  <div class="betdetail-bg">
+    <div *ngFor="let data of betrecordDetailService.betDetailParametersData.projects">
+      <div class="bet-wrap">
+        <div class="bet-detail-1">
+          <div class="bet-l">
+            <div class="mt5 bet-title"><span>{{data.title}}</span></div>
+            <div class="mt5"><span>第{{data.issue}}期</span></div>
+            <div class="mt5"><span>注单金额：</span><span class="gray">￥{{data.amount}}</span></div>
+            <div class="mt5" *ngIf="data.total_prize"><span>中奖金额：</span><span>￥{{data.total_prize }}</span></div>
+          </div>
+          <div class="bet-l bet-r-font">
+            <div class="" *ngIf="data.winning_number_group?.length">
+              <div>中奖号码：</div>
+              <div><i class="num-green" *ngFor="let num of data.winning_number_group">{{num}}</i></div>
+            </div>
+            <div>下注时间：</div>
+            <div>{{data.bought_at}}</div>
+          </div>
+        </div>
+        <ul class="bet-list">
+          <li><span>模式：</span><span class="gray">{{({'0.10':'角','1.00':'元','0.1':'角','0.01':"分"}[data.coefficient])}}</span></li>
+          <li><span>倍数：</span><span class="gray">{{data.multiple}}倍</span></li>
+          <li><span>投注内容：</span><span class="gray">{{data.display_bet_number}}</span></li>
+          <li><span>注单编号：</span><span class="gray">{{data.serial_number}}</span></li>
+          <li><span>订单状态：</span><span class="gray">{{(statusName[data.status])}}</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</ion-content>

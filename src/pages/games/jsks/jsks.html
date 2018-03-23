@@ -1,0 +1,169 @@
+<!--头部-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle="left">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <span>{{ gameconfigdata.defaultData.data?.game_name_cn}}</span><img src="assets/img/question.svg"
+                                                                          class="question-icon" alt=""
+                                                                          (touchstart)="goHelpPage()">
+      <div class="header-r">
+        <div class="open-modal header-select header-w">{{
+          gameconfigdata.defaultsMethodData?.a.name_cn}}{{
+          gameconfigdata.defaultsMethodData?.c?.name_cn}}
+        </div>
+      </div>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<!--主要内容-->
+<ion-content class="no-scroll">
+
+  <div class="out-side" id="out-side">
+    <ion-slides class="history-slide" id="inner-side" *ngIf="share?.gameRecord?.data?.length">
+      <ion-spinner></ion-spinner>
+      <ion-slide>
+        <div class="history-wrap">
+          <ul class="history-table">
+            <li class="history-row">
+              <div class="history-cell">时间</div>
+              <div class="history-cell">彩种</div>
+              <div class="history-cell">投注金额</div>
+            </li>
+
+            <li class="history-row" *ngFor="let records of share?.gameRecord?.data;let i = index;">
+              <div class="history-cell">{{records.created_at?.replace(share.yearReg, '')}}</div>
+              <div class="history-cell">{{records.friendly_name}}</div>
+              <div class="history-cell">{{records.amount}}</div>
+            </li>
+          </ul>
+        </div>
+      </ion-slide>
+    </ion-slides>
+    <div class="wrap wrap-black" id="wrap">
+      <div class="chonghui">
+        <div style="height: 1px;" [class.sscbg]="share?.timers?.divTimer?.show"></div>
+        <div style="height: 1px;" [class.sscbg]="share?.timers?.divTimer?.show"></div>
+      </div>
+      <div class="wrap-top clear">
+        <div class="fl">
+          <div class="date" *ngIf="gameconfigdata.defaultData.data?.last_number">
+            第{{gameconfigdata.defaultData.data?.last_number}}期
+          </div>
+          <div class="wrap-top-num">
+            <i *ngFor="let num of gameconfigdata.defaultData.data?.lottery_balls" class="saizi saizi-{{num}}"></i>
+          </div>
+        </div>
+        <div class="fr">
+          <div class="date">第{{gameconfigdata.defaultData.data?.current_number}}期投注截止
+          </div>
+          <div class="time" *ngIf="gameconfigdata.istimeout">
+            <span class="time-num">{{gameconfigdata.clock.hours}}</span>
+            <span>:</span>
+            <span class="time-num">{{gameconfigdata.clock.minutes}}</span>
+            <span>:</span>
+            <span class="time-num">{{gameconfigdata.clock.seconds}}</span>
+          </div>
+        </div>
+      </div>
+      <!--时时彩-->
+
+      <!--和值-->
+      <div class="game-list" *ngIf="gameconfigdata.defaultsMethodData?.c?.ishezhi">
+        <ul class="k3-num-list">
+          <li class="k3-li" *ngFor="let v of gameconfigdata.defaultsMethodData?.c?.selectarea; let key = index;">
+            <i (touchstart)="util.chooseBall(key,gameconfigdata.defaultsMethodData?.c.selectarea,c)" class="num-black" [class.num-yellow]="v">{{gameconfigdata.defaultsMethodData?.c?.selectareaPair[key]}}</i>
+          </li>
+        </ul>
+      </div>
+
+      <div *ngIf="!gameconfigdata.defaultsMethodData?.c?.ishezhi" class="game-list">
+        <div class="k3-same-2" *ngIf="c.leveltwo">
+          <div *ngFor="let items of gameconfigdata.defaultsMethodData?.c?.selectareaPair; let pindex = index;">
+            <ul [class.num-yellow]="gameconfigdata.defaultsMethodData?.c?.selectarea[pindex][key]" class="k3-list" *ngFor="let v of items;let key = index;" (touchstart)="util.chooseBall(key,gameconfigdata.defaultsMethodData?.c.selectarea[pindex],gameconfigdata.defaultsMethodData?.c)">
+              <li class="k3-li" *ngFor="let num of (''+v).split('')"><i class="saizi saizi-{{num}}"></i></li>
+            </ul>
+
+
+            <ul class="k3-list k3-list-2" *ngIf="gameconfigdata.defaultsMethodData?.c.isertonghao" (touchstart)="selectall(gameconfigdata.defaultsMethodData?.c.selectarea[pindex])">
+              <li *ngFor="let v of [pindex+1,pindex+1]" class="k3-li"><i class="saizi saizi-{{v}}"></i></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="k3-same-2" *ngIf="!gameconfigdata.defaultsMethodData?.c?.leveltwo">
+          <ul [class.num-yellow]="gameconfigdata.defaultsMethodData?.c?.selectarea[key]" class="k3-list" *ngFor="let v of gameconfigdata.defaultsMethodData?.c?.selectareaPair;let key = index;" (touchstart)="util.chooseBall(key,gameconfigdata.defaultsMethodData?.c?.selectarea,gameconfigdata.defaultsMethodData?.c)">
+            <li class="k3-li" *ngFor="let num of (''+v).split('')"><i class="saizi saizi-{{num}}"></i></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</ion-content>
+<!--页脚内容-->
+<ion-footer>
+  <div class="add-bill clear">
+    <div class="fl">
+      <span class="remove-icon" (touchstart)="clear(gameconfigdata.defaultsMethodData?.c)"><i
+        class="iconfont icon-lajitong1 times"></i></span>
+      <div class="money-drop">
+        <div class="money-btn money-btn-2"><i>{{({'1':'元','0.1':'角','0.01':'分'}[gameconfigdata.defaultsMethodData?.c.mutipleAndModeObj.mode])}}</i><img src="assets/img/arrow-up.svg" class="arrow-up" alt=""></div>
+        <ul class="money-menu">
+          <li (touchstart)="modeChange(gameconfigdata.defaultsMethodData?.c,0.01)">分</li>
+          <li (touchstart)="modeChange(gameconfigdata.defaultsMethodData?.c,0.1)">角</li>
+          <li (touchstart)="modeChange(gameconfigdata.defaultsMethodData?.c,1)" class="active">元</li>
+        </ul>
+      </div>
+      <span class="add-num">倍数:</span>
+      <div class="footer-input">
+        <img (touchstart)="mindus(gameconfigdata.defaultsMethodData?.c)" src="assets/img/reduce.svg"/>
+        <input type="tel" (change)="pluseOrmindus(gameconfigdata.defaultsMethodData?.c,$event)"
+               (input)="pluseOrmindusOnInput(gameconfigdata.defaultsMethodData?.c,$event)"
+               value="{{gameconfigdata.defaultsMethodData?.c?.mutipleAndModeObj.times}}"
+               maxlength="6">
+
+        <img src="assets/img/plus.svg" (touchstart)="pluse(gameconfigdata.defaultsMethodData?.c)"/>
+      </div>
+    </div>
+    <div class="fr"><a class="header-select times" (touchstart)="addBall(gameconfigdata.defaultsMethodData?.c)">添加注单</a>
+    </div>
+  </div>
+  <div class="confirm-bet">
+    <ul>
+      <li>
+        <span
+          class="total">共 {{gameconfigdata.defaultsMethodData?.c.count}} 注</span>
+        <span
+          class="total-money">￥{{gameconfigdata.defaultsMethodData?.c.totals}} </span>
+      </li>
+      <li class="confirm-w">
+        <a class="confirm-btn" tabBadge="14" tabBadgeStyle="danger"
+           (touchstart)="goBuybasket(gameconfigdata?.defaultsMethodData?.c)">
+          <span>确认投注</span><span class="confirm-number"
+                                 *ngIf="basket.basketData.length">{{basket.basketData?.length}}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</ion-footer>
+<!--透明背景-->
+<div class="body-bg"></div>
+<!--弹框内容-->
+<div class="alert-con">
+  <div class="play-select">
+    <div class="play-title">玩法选择</div>
+  </div>
+  <div class="after-select">
+    <div class="after-con" [class.active]="a.defaultMethod" *ngFor="let a of gameconfigdata.methedsList.game_ways">
+      <div class="after-list clear after-list-{{b.name_cn.length + 1}}" *ngFor="let b of a.children">
+        <ul class="lastchina">
+          <li *ngFor="let c of b.children"><i [class.play-yellow]="c.defaultMethod" class="play-black play-opacity"
+                                              (touchstart)="tmpComformMethod(a,b,c)">{{c.name_cn}}</i></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="close-modal bet-btn" (touchstart)="comformMethod(a,b,c)">确定</div>
+</div>

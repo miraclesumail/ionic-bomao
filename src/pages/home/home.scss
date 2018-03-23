@@ -1,0 +1,60 @@
+page-home {
+  .sscbg{
+    background: #1A1D2E;
+  }
+  .notice {
+    line-height: 40px;
+    padding: 0 4%;
+    display: inline-block;
+    span {
+      font-size: 1.3rem;
+      color: #fff;
+      margin-left:6px;
+      position: relative;
+      top: 1px;
+    }
+  }
+  .lottery-con {
+    padding: 0 2% 10px;
+  }
+  .lottery-title {
+    padding:6px 4% 0;
+    color: #fff;
+    line-height: 38px;
+    .icon-bianmincaipiao {
+      font-size: 2.6rem;
+    }
+    span {
+      margin-left:6px;
+    }
+    .home-more{
+      float: right;
+      .icon-fanhui{
+        color: #aaa;
+        font-size: 2.2rem;
+        -webkit-transform: rotate(180deg)!important;
+        -moz-transform: rotate(180deg)!important;
+        -ms-transform: rotate(180deg)!important;
+        -o-transform: rotate(180deg)!important;
+        transform: rotate(180deg)!important;
+      }
+    }
+  }
+  .swiper-container-horizontal > .swiper-pagination{
+    bottom: 5px;
+    display: block!important;
+  }
+  .home-money{
+    font-size: 1.4rem;
+    color: #fff;
+  }
+  .home-btn{
+    color: #262731;
+    background: #FFBE00;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 10px;
+    font-size: 1.2rem;
+    border-radius: 14px;
+  }
+}

@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <button icon-only class="fr">
+      <mores></mores>
+    </button>
+    <ion-title>公告</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="gray-bg">
+  <ul class="notice">
+    <li class="new-recharge j-btn" *ngFor="let item of homeService.notice.data" (click)="pushPage('NoticeDetailPage',{notice:item})">
+      <div class="message-date">{{item.created_at}}</div>
+      <div class="message-title">{{item.title}}</div>
+    </li>
+  </ul>
+  <no-data-remind *ngIf="!homeService.notice.data?.length"></no-data-remind>
+</ion-content>

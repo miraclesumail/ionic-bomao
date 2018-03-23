@@ -1,0 +1,54 @@
+page-bet-datail .bet-top {
+  background: #2E324E;
+  text-align: center;
+  padding: 13px; }
+  page-bet-datail .bet-top .text-1 {
+    font-size: 1.6rem;
+    color: #fff; }
+  page-bet-datail .bet-top .text-2 {
+    color: #c6c6c6;
+    margin: 6px 0; }
+page-bet-datail .bet-num-green .num-green {
+  margin: 0 3px; }
+page-bet-datail .bet-wrap {
+  background: #fff;
+  padding: 0 2%;
+  color: #808080;
+  margin-top: 10px; }
+page-bet-datail .bet-detail-1 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 2%;
+  border-bottom: 1px solid #e5e5e5; }
+page-bet-datail .bet-l {
+  display: block; }
+page-bet-datail .bet-r-font {
+  font-size: 1.3rem;
+  padding-top: 6px; }
+page-bet-datail .bet-list {
+  display: block;
+  width: 100%;
+  padding: 8px 2%;
+  line-height: 2; }
+page-bet-datail .bet-chase {
+  line-height: 28px;
+  padding: 8px; }
+page-bet-datail .chase-r {
+  float: right; }
+page-bet-datail .stop {
+  border: 1px solid #686990;
+  font-size: 1.4rem;
+  color: #686990;
+  line-height: 26px;
+  padding: 0 10px;
+  border-radius: 3px;
+  margin-left: 10px; }
+page-bet-datail .now-chase {
+  background: #fff;
+  padding: 0 4%;
+  line-height: 40px;
+  margin: 12px 0; }
+
+/*# sourceMappingURL=bet-datail.css.map */
